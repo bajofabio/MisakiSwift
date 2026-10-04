@@ -11,7 +11,10 @@ let package = Package(
   products: [
     .library(
       name: "MisakiSwift",
-      type: .dynamic,
+      // Linkage left automatic (static in practice). .dynamic made Xcode
+      // build MLXNN as a dynamic framework for this chain while the app
+      // links it statically via mlx-swift-lm — duplicate ObjC classes and
+      // a second copy of MLX mapped at every launch.
       targets: ["MisakiSwift"]
     ),
   ],
